@@ -9,7 +9,7 @@ const pacientes = [
 
 const servidor = http.createServer((requisicao, resposta) => {
 
-    // Rota para listar todos os pacientes
+    // GET - Listar todos os pacientes
     if (requisicao.method === 'GET' && requisicao.url === '/pacientes') {
 
         resposta.writeHead(200, {
@@ -20,24 +20,33 @@ const servidor = http.createServer((requisicao, resposta) => {
         return;
     }
 
-    // Rota para buscar um paciente pelo ID
-    if (requisicao.method === 'GET' && requisicao.url.startsWith('/pacientes/')) {
+    // GET - Buscar paciente pelo ID
+    if (requisicao.method === 'GET' &&
+        /^\/pacientes\/\d+$/.test(requisicao.url)) {
 
         const id = Number(requisicao.url.split('/')[2]);
-
         const paciente = pacientes.find(p => p.id === id);
 
-        if (paciente) {
-            resposta.writeHead(200, {
+        if (!paciente) {
+            resposta.writeHead(404, {
                 'Content-Type': 'application/json'
             });
 
-            resposta.end(JSON.stringify(paciente));
+            resposta.end(JSON.stringify({
+                mensagem: 'Paciente não encontrado'
+            }));
             return;
         }
+
+        resposta.writeHead(200, {
+            'Content-Type': 'application/json'
+        });
+
+        resposta.end(JSON.stringify(paciente));
+        return;
     }
 
-    // Rota para cadastrar um novo paciente
+    // POST - Cadastrar novo paciente
     if (requisicao.method === 'POST' && requisicao.url === '/pacientes') {
 
         let corpo = '';
@@ -47,6 +56,7 @@ const servidor = http.createServer((requisicao, resposta) => {
         });
 
         requisicao.on('end', () => {
+
             let novoPaciente;
 
             try {
@@ -79,7 +89,8 @@ const servidor = http.createServer((requisicao, resposta) => {
                 return;
             }
 
-            const proximoId = Math.max(0, ...pacientes.map(p => p.id)) + 1;
+            const proximoId =
+                Math.max(0, ...pacientes.map(p => p.id)) + 1;
 
             const pacienteCadastrado = {
                 id: proximoId,
@@ -94,6 +105,77 @@ const servidor = http.createServer((requisicao, resposta) => {
             });
 
             resposta.end(JSON.stringify(pacienteCadastrado));
+        });
+
+        return;
+    }
+
+    // PUT - Atualizar paciente pelo ID
+    if (requisicao.method === 'PUT' &&
+        /^\/pacientes\/\d+$/.test(requisicao.url)) {
+
+        const id = Number(requisicao.url.split('/')[2]);
+        const paciente = pacientes.find(p => p.id === id);
+
+        if (!paciente) {
+            resposta.writeHead(404, {
+                'Content-Type': 'application/json'
+            });
+
+            resposta.end(JSON.stringify({
+                mensagem: 'Paciente não encontrado'
+            }));
+            return;
+        }
+
+        let corpo = '';
+
+        requisicao.on('data', (parte) => {
+            corpo += parte;
+        });
+
+        requisicao.on('end', () => {
+
+            let dados;
+
+            try {
+                dados = JSON.parse(corpo);
+            } catch (erro) {
+                resposta.writeHead(400, {
+                    'Content-Type': 'application/json'
+                });
+
+                resposta.end(JSON.stringify({
+                    mensagem: 'JSON inválido'
+                }));
+                return;
+            }
+
+            if (
+                !dados ||
+                typeof dados.nome !== 'string' ||
+                !dados.nome.trim() ||
+                !Number.isInteger(dados.idade) ||
+                dados.idade < 0
+            ) {
+                resposta.writeHead(400, {
+                    'Content-Type': 'application/json'
+                });
+
+                resposta.end(JSON.stringify({
+                    mensagem: 'Informe um nome e uma idade válida'
+                }));
+                return;
+            }
+
+            paciente.nome = dados.nome.trim();
+            paciente.idade = dados.idade;
+
+            resposta.writeHead(200, {
+                'Content-Type': 'application/json'
+            });
+
+            resposta.end(JSON.stringify(paciente));
         });
 
         return;
