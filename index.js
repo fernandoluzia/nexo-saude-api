@@ -180,6 +180,48 @@ const servidor = http.createServer((requisicao, resposta) => {
 
         return;
     }
+    // ==============================================
+// DELETE - EXCLUIR PACIENTE PELO ID
+// ==============================================
+
+// Endpoint: DELETE /pacientes/3
+
+if (requisicao.method === 'DELETE' &&
+    /^\/pacientes\/\d+$/.test(requisicao.url)) {
+
+    // Obtém o ID informado na URL.
+    const id = Number(requisicao.url.split('/')[2]);
+
+    // Procura a posição do paciente no array.
+    const indice = pacientes.findIndex(p => p.id === id);
+
+    // Verifica se o paciente existe.
+    if (indice === -1) {
+        resposta.writeHead(404, {
+            'Content-Type': 'application/json'
+        });
+
+        resposta.end(JSON.stringify({
+            mensagem: 'Paciente não encontrado'
+        }));
+        return;
+    }
+
+    // Remove o paciente da lista.
+    const pacienteExcluido = pacientes.splice(indice, 1)[0];
+
+    // Confirma a exclusão.
+    resposta.writeHead(200, {
+        'Content-Type': 'application/json'
+    });
+
+    resposta.end(JSON.stringify({
+        mensagem: 'Paciente excluído com sucesso',
+        paciente: pacienteExcluido
+    }));
+
+    return;
+}
 
     // Rota não encontrada
     resposta.writeHead(404, {
