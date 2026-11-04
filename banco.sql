@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS nexo_saude;
+USE nexo_saude;
+
+CREATE TABLE IF NOT EXISTS pacientes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(150) NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+    servico VARCHAR(100),
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
