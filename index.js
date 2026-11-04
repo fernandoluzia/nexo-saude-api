@@ -1,239 +1,158 @@
-
 const http = require('http');
+const db = require('./database');
 
-const pacientes = [
-    { id: 1, nome: 'Maria Oliveira', idade: 42 },
-    { id: 2, nome: 'Lucas Correia', idade: 28 },
-    { id: 3, nome: 'Fernando Luzia', idade: 23 }
-];
+const servidor = http.createServer(async (requisicao, resposta) => {
+    // Configura cabeçalho padrão JSON
+    const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
-const servidor = http.createServer((requisicao, resposta) => {
-
-    // GET - Listar todos os pacientes
-    if (requisicao.method === 'GET' && requisicao.url === '/pacientes') {
-
-        resposta.writeHead(200, {
-            'Content-Type': 'application/json'
-        });
-
-        resposta.end(JSON.stringify(pacientes));
-        return;
-    }
-
-    // GET - Buscar paciente pelo ID
-    if (requisicao.method === 'GET' &&
-        /^\/pacientes\/\d+$/.test(requisicao.url)) {
-
-        const id = Number(requisicao.url.split('/')[2]);
-        const paciente = pacientes.find(p => p.id === id);
-
-        if (!paciente) {
-            resposta.writeHead(404, {
-                'Content-Type': 'application/json'
-            });
-
-            resposta.end(JSON.stringify({
-                mensagem: 'Paciente não encontrado'
-            }));
+    try {
+        // ==============================================
+        // GET - Listar todos os pacientes do banco
+        // ==============================================
+        if (requisicao.method === 'GET' && requisicao.url === '/pacientes') {
+            const [linhas] = await db.query('SELECT * FROM pacientes');
+            resposta.writeHead(200, jsonHeader);
+            resposta.end(JSON.stringify(linhas));
             return;
         }
 
-        resposta.writeHead(200, {
-            'Content-Type': 'application/json'
-        });
+        // ==============================================
+        // GET - Buscar paciente pelo ID
+        // ==============================================
+        if (requisicao.method === 'GET' && /^\/pacientes\/\d+$/.test(requisicao.url)) {
+            const id = Number(requisicao.url.split('/')[2]);
+            const [linhas] = await db.query('SELECT * FROM pacientes WHERE id = ?', [id]);
 
-        resposta.end(JSON.stringify(paciente));
-        return;
-    }
-
-    // POST - Cadastrar novo paciente
-    if (requisicao.method === 'POST' && requisicao.url === '/pacientes') {
-
-        let corpo = '';
-
-        requisicao.on('data', (parte) => {
-            corpo += parte;
-        });
-
-        requisicao.on('end', () => {
-
-            let novoPaciente;
-
-            try {
-                novoPaciente = JSON.parse(corpo);
-            } catch (erro) {
-                resposta.writeHead(400, {
-                    'Content-Type': 'application/json'
-                });
-
-                resposta.end(JSON.stringify({
-                    mensagem: 'JSON inválido'
-                }));
+            if (linhas.length === 0) {
+                resposta.writeHead(404, jsonHeader);
+                resposta.end(JSON.stringify({ mensagem: 'Paciente não encontrado' }));
                 return;
             }
 
-            if (
-                !novoPaciente ||
-                typeof novoPaciente.nome !== 'string' ||
-                !novoPaciente.nome.trim() ||
-                !Number.isInteger(novoPaciente.idade) ||
-                novoPaciente.idade < 0
-            ) {
-                resposta.writeHead(400, {
-                    'Content-Type': 'application/json'
-                });
-
-                resposta.end(JSON.stringify({
-                    mensagem: 'Informe um nome e uma idade válida'
-                }));
-                return;
-            }
-
-            const proximoId =
-                Math.max(0, ...pacientes.map(p => p.id)) + 1;
-
-            const pacienteCadastrado = {
-                id: proximoId,
-                nome: novoPaciente.nome.trim(),
-                idade: novoPaciente.idade
-            };
-
-            pacientes.push(pacienteCadastrado);
-
-            resposta.writeHead(201, {
-                'Content-Type': 'application/json'
-            });
-
-            resposta.end(JSON.stringify(pacienteCadastrado));
-        });
-
-        return;
-    }
-
-    // PUT - Atualizar paciente pelo ID
-    if (requisicao.method === 'PUT' &&
-        /^\/pacientes\/\d+$/.test(requisicao.url)) {
-
-        const id = Number(requisicao.url.split('/')[2]);
-        const paciente = pacientes.find(p => p.id === id);
-
-        if (!paciente) {
-            resposta.writeHead(404, {
-                'Content-Type': 'application/json'
-            });
-
-            resposta.end(JSON.stringify({
-                mensagem: 'Paciente não encontrado'
-            }));
+            resposta.writeHead(200, jsonHeader);
+            resposta.end(JSON.stringify(linhas[0]));
             return;
         }
 
-        let corpo = '';
+        // ==============================================
+        // POST - Cadastrar novo paciente no banco
+        // ==============================================
+        if (requisicao.method === 'POST' && requisicao.url === '/pacientes') {
+            let corpo = '';
+            requisicao.on('data', (parte) => { corpo += parte; });
 
-        requisicao.on('data', (parte) => {
-            corpo += parte;
-        });
+            requisicao.on('end', async () => {
+                let novoPaciente;
+                try {
+                    novoPaciente = JSON.parse(corpo);
+                } catch {
+                    resposta.writeHead(400, jsonHeader);
+                    resposta.end(JSON.stringify({ mensagem: 'JSON inválido' }));
+                    return;
+                }
 
-        requisicao.on('end', () => {
+                if (!novoPaciente || !novoPaciente.nome || !novoPaciente.nome.trim() || !novoPaciente.telefone) {
+                    resposta.writeHead(400, jsonHeader);
+                    resposta.end(JSON.stringify({ mensagem: 'Informe ao menos nome e telefone' }));
+                    return;
+                }
 
-            let dados;
+                const nome = novoPaciente.nome.trim();
+                const telefone = novoPaciente.telefone.trim();
+                const servico = novoPaciente.servico ? novoPaciente.servico.trim() : null;
 
-            try {
-                dados = JSON.parse(corpo);
-            } catch (erro) {
-                resposta.writeHead(400, {
-                    'Content-Type': 'application/json'
-                });
+                const [resultado] = await db.query(
+                    'INSERT INTO pacientes (nome, telefone, servico) VALUES (?, ?, ?)',
+                    [nome, telefone, servico]
+                );
 
-                resposta.end(JSON.stringify({
-                    mensagem: 'JSON inválido'
-                }));
-                return;
-            }
+                const pacienteCriado = {
+                    id: resultado.insertId,
+                    nome,
+                    telefone,
+                    servico
+                };
 
-            if (
-                !dados ||
-                typeof dados.nome !== 'string' ||
-                !dados.nome.trim() ||
-                !Number.isInteger(dados.idade) ||
-                dados.idade < 0
-            ) {
-                resposta.writeHead(400, {
-                    'Content-Type': 'application/json'
-                });
-
-                resposta.end(JSON.stringify({
-                    mensagem: 'Informe um nome e uma idade válida'
-                }));
-                return;
-            }
-
-            paciente.nome = dados.nome.trim();
-            paciente.idade = dados.idade;
-
-            resposta.writeHead(200, {
-                'Content-Type': 'application/json'
+                resposta.writeHead(201, jsonHeader);
+                resposta.end(JSON.stringify(pacienteCriado));
             });
+            return;
+        }
 
-            resposta.end(JSON.stringify(paciente));
-        });
+        // ==============================================
+        // PUT - Atualizar paciente pelo ID
+        // ==============================================
+        if (requisicao.method === 'PUT' && /^\/pacientes\/\d+$/.test(requisicao.url)) {
+            const id = Number(requisicao.url.split('/')[2]);
+            let corpo = '';
+            requisicao.on('data', (parte) => { corpo += parte; });
 
-        return;
+            requisicao.on('end', async () => {
+                let dados;
+                try {
+                    dados = JSON.parse(corpo);
+                } catch {
+                    resposta.writeHead(400, jsonHeader);
+                    resposta.end(JSON.stringify({ mensagem: 'JSON inválido' }));
+                    return;
+                }
+
+                if (!dados || !dados.nome || !dados.telefone) {
+                    resposta.writeHead(400, jsonHeader);
+                    resposta.end(JSON.stringify({ mensagem: 'Informe nome e telefone válidos' }));
+                    return;
+                }
+
+                const nome = dados.nome.trim();
+                const telefone = dados.telefone.trim();
+                const servico = dados.servico ? dados.servico.trim() : null;
+
+                const [resultado] = await db.query(
+                    'UPDATE pacientes SET nome = ?, telefone = ?, servico = ? WHERE id = ?',
+                    [nome, telefone, servico, id]
+                );
+
+                if (resultado.affectedRows === 0) {
+                    resposta.writeHead(404, jsonHeader);
+                    resposta.end(JSON.stringify({ mensagem: 'Paciente não encontrado' }));
+                    return;
+                }
+
+                resposta.writeHead(200, jsonHeader);
+                resposta.end(JSON.stringify({ id, nome, telefone, servico }));
+            });
+            return;
+        }
+
+        // ==============================================
+        // DELETE - Excluir paciente pelo ID
+        // ==============================================
+        if (requisicao.method === 'DELETE' && /^\/pacientes\/\d+$/.test(requisicao.url)) {
+            const id = Number(requisicao.url.split('/')[2]);
+            const [resultado] = await db.query('DELETE FROM pacientes WHERE id = ?', [id]);
+
+            if (resultado.affectedRows === 0) {
+                resposta.writeHead(404, jsonHeader);
+                resposta.end(JSON.stringify({ mensagem: 'Paciente não encontrado' }));
+                return;
+            }
+
+            resposta.writeHead(200, jsonHeader);
+            resposta.end(JSON.stringify({ mensagem: 'Paciente excluído com sucesso' }));
+            return;
+        }
+
+        // Rota não encontrada
+        resposta.writeHead(404, jsonHeader);
+        resposta.end(JSON.stringify({ mensagem: 'Rota não encontrada' }));
+
+    } catch (erro) {
+        console.error('Erro no servidor:', erro);
+        resposta.writeHead(500, jsonHeader);
+        resposta.end(JSON.stringify({ mensagem: 'Erro interno no servidor' }));
     }
-    // ==============================================
-// DELETE - EXCLUIR PACIENTE PELO ID
-// ==============================================
-
-// Endpoint: DELETE /pacientes/3
-
-if (requisicao.method === 'DELETE' &&
-    /^\/pacientes\/\d+$/.test(requisicao.url)) {
-
-    // Obtém o ID informado na URL.
-    const id = Number(requisicao.url.split('/')[2]);
-
-    // Procura a posição do paciente no array.
-    const indice = pacientes.findIndex(p => p.id === id);
-
-    // Verifica se o paciente existe.
-    if (indice === -1) {
-        resposta.writeHead(404, {
-            'Content-Type': 'application/json'
-        });
-
-        resposta.end(JSON.stringify({
-            mensagem: 'Paciente não encontrado'
-        }));
-        return;
-    }
-
-    // Remove o paciente da lista.
-    const pacienteExcluido = pacientes.splice(indice, 1)[0];
-
-    // Confirma a exclusão.
-    resposta.writeHead(200, {
-        'Content-Type': 'application/json'
-    });
-
-    resposta.end(JSON.stringify({
-        mensagem: 'Paciente excluído com sucesso',
-        paciente: pacienteExcluido
-    }));
-
-    return;
-}
-
-    // Rota não encontrada
-    resposta.writeHead(404, {
-        'Content-Type': 'application/json'
-    });
-
-    resposta.end(JSON.stringify({
-        mensagem: 'Rota não encontrada'
-    }));
-
 });
 
 servidor.listen(3000, () => {
-    console.log('Servidor NEXO Saúde rodando na porta 3000');
+    console.log('Servidor NEXO Saúde rodando na porta 3000 conectado ao MySQL');
 });
