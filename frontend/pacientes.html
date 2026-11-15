@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NEXO Saúde - Pacientes</title>
+
+    <link rel="stylesheet" href="./src/styles/pacientes.css">
+</head>
+
+<body>
+
+    <!-- MENU LATERAL -->
+    <aside class="sidebar">
+
+        <h2>NEXO Saúde</h2>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a class="ativo" href="pacientes.html">Pacientes</a>
+            <a href="#">Consultas</a>
+            <a href="#">Atendimentos</a>
+            <a href="#">Usuários</a>
+            <a href="#">Configurações</a>
+        </nav>
+
+    </aside>
+
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="conteudo">
+
+        <!-- CABEÇALHO -->
+        <header>
+            <h1>Gestão de Pacientes</h1>
+            <p>Gerencie os pacientes cadastrados na clínica.</p>
+
+            <a class="novo-paciente" href="#">+ Novo Paciente</a>
+        </header>
+
+
+        <!-- FILTROS -->
+        <section class="filtros">
+
+            <input type="text" placeholder="Buscar por nome, CPF ou prontuário...">
+
+            <select>
+                <option>Todos os status</option>
+                <option>Ativo</option>
+                <option>Inativo</option>
+            </select>
+
+            <select>
+                <option>Todos os convênios</option>
+                <option>Particular</option>
+                <option>Unimed</option>
+            </select>
+
+        </section>
+
+
+        <!-- TABELA DE PACIENTES -->
+        <section class="lista-pacientes">
+
+            <table>
+
+                <tr>
+                    <th>Prontuário</th>
+                    <th>Paciente</th>
+                    <th>CPF</th>
+                    <th>Contato</th>
+                    <th>Convênio</th>
+                    <th>Cadastro</th>
+                    <th>Última Consulta</th>
+                </tr>
+
+                <tr>
+                    <td>000001</td>
+                    <td>Maria Oliveira</td>
+                    <td>123.456.789-00</td>
+                    <td>(11) 99999-1234</td>
+                    <td>Particular</td>
+                    <td>01/11/2026</td>
+                    <td>10/11/2026</td>
+                </tr>
+
+                <tr>
+                    <td>000002</td>
+                    <td>Lucas Correia</td>
+                    <td>987.654.321-00</td>
+                    <td>(11) 98888-5678</td>
+                    <td>Unimed</td>
+                    <td>02/11/2026</td>
+                    <td>05/11/2026</td>
+                </tr>
+
+                <tr>
+                    <td>000003</td>
+                    <td>Fernando Luzia</td>
+                    <td>456.789.123-00</td>
+                    <td>(11) 97777-4321</td>
+                    <td>Particular</td>
+                    <td>03/11/2026</td>
+                    <td>01/11/2026</td>
+                </tr>
+
+            </table>
+
+
+            <!-- PAGINAÇÃO -->
+            <div class="paginacao">
+
+                <p>Mostrando 3 de 3 pacientes</p>
+
+                <div class="paginas">
+                    <a href="#">Anterior</a>
+                    <a class="pagina-atual" href="#">1</a>
+                    <a href="#">Próximo</a>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

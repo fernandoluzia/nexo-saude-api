@@ -1,0 +1,198 @@
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F5F7FA;
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* MENU LATERAL */
+
+.sidebar {
+    background-color: #173B57;
+    width: 250px;
+    min-width: 250px;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    color: white;
+    font-size: 24px;
+    margin: 0 0 40px;
+}
+
+.sidebar nav a {
+    display: block;
+    color: #D9E8F0;
+    text-decoration: none;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.sidebar nav a:hover {
+    background-color: #28516F;
+    color: white;
+}
+
+.sidebar nav .ativo {
+    background-color: #EAF3F8;
+    color: #173B57;
+}
+
+
+/* CONTEÚDO PRINCIPAL */
+
+.conteudo {
+    flex: 1;
+    min-width: 0;
+    padding: 30px 40px;
+}
+
+
+/* CABEÇALHO */
+
+header {
+    position: relative;
+}
+
+header h1 {
+    color: #173B57;
+    font-size: 28px;
+    margin: 0;
+}
+
+header p {
+    color: #738394;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.novo-paciente {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    background-color: #176B87;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.novo-paciente:hover {
+    background-color: #145A72;
+}
+
+
+/* FILTROS */
+
+.filtros {
+    background-color: white;
+    padding: 30px 20px;
+    border-radius: 10px;
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    min-height: 120px;
+}
+
+.filtros input {
+    width: 500px;
+    height: 44px;
+    padding: 12px;
+    background-color: #F5F7FA;
+    border: 1px solid #E5EAF0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.filtros select {
+    width: 180px;
+    height: 44px;
+    padding: 10px;
+    background-color: #F5F7FA;
+    border: 1px solid #E5EAF0;
+    border-radius: 8px;
+    color: #526477;
+    font-size: 14px;
+}
+
+
+/* TABELA DE PACIENTES */
+
+.lista-pacientes {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #F5F7FA;
+    color: #526477;
+    text-align: left;
+    padding: 15px;
+    font-size: 12px;
+}
+
+td {
+    color: #526477;
+    padding: 20px 15px;
+    border-bottom: 1px solid #E5EAF0;
+    font-size: 12px;
+}
+
+
+/* PAGINAÇÃO */
+
+.paginacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.paginacao p {
+    color: #738394;
+    font-size: 13px;
+}
+
+.paginas {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.paginas a {
+    color: #526477;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.paginas .pagina-atual {
+    color: #176B87;
+    font-weight: bold;
+}
