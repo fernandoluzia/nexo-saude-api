@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXO Saúde - Dashboard</title>
+
+   
+   <link rel="stylesheet" href="./src/styles/dashboard.css">
+</head>
+
+<body>
+
+    <!-- MENU LATERAL -->
+    <aside class="sidebar">
+
+        <h2>NEXO Saúde</h2>
+
+        <nav>
+            <a class="ativo" href="dashboard.html">Dashboard</a>
+            <a href="#">Pacientes</a>
+            <a href="#">Consultas</a>
+            <a href="#">Atendimentos</a>
+            <a href="#">Usuários</a>
+            <a href="#">Configurações</a>
+        </nav>
+
+        <!-- ATALHOS -->
+        <div class="atalhos">
+            <h3>Atalhos Rápidos</h3>
+
+            <a href="#">Novo Paciente</a>
+            <a href="#">Agendar Consulta</a>
+            <a class="destaque" href="#">Iniciar Atendimento</a>
+            <a href="#">Emitir Atestado/Receita</a>
+        </div>
+
+    </aside>
+
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="conteudo">
+
+        <header>
+            <h1>Bom dia, Dr. Rafael Silva</h1>
+            <p>Aqui está o resumo das atividades da sua clínica.</p>
+        </header>
+
+
+        <!-- INDICADORES -->
+        <section class="indicadores">
+
+            <div class="card">
+                <h3>Total de Pacientes</h3>
+                <h2>2.456</h2>
+                <p>+12% neste mês</p>
+            </div>
+
+            <div class="card">
+                <h3>Consultas de Hoje</h3>
+                <h2>18</h2>
+                <p class="realizadas">12 realizadas</p>
+            </div>
+
+            <div class="card">
+                <h3>Consultas Pendentes</h3>
+                <h2>6</h2>
+                <p class="pendentes">Aguardando atendimento</p>
+            </div>
+
+            <div class="card alerta">
+                <h3>Pendência Crítica</h3>
+                <p>3 exames laboratoriais pendentes de laudo cardiológico para liberação cirúrgica.</p>
+                <a href="#">Abrir fila de laudos</a>
+            </div>
+
+        </section>
+
+
+        <!-- GRÁFICO E AGENDAMENTOS -->
+        <div class="linha-paineis">
+
+            <!-- GRÁFICO -->
+            <section class="grafico-consultas">
+
+                <h2>Visão Geral das Consultas</h2>
+
+                <div class="grafico">
+
+                    <div class="barra">
+                        <div class="coluna seg"></div>
+                        <p>Seg</p>
+                    </div>
+
+                    <div class="barra">
+                        <div class="coluna ter"></div>
+                        <p>Ter</p>
+                    </div>
+
+                    <div class="barra">
+                        <div class="coluna qua"></div>
+                        <p>Qua</p>
+                    </div>
+
+                    <div class="barra">
+                        <div class="coluna qui"></div>
+                        <p>Qui</p>
+                    </div>
+
+                    <div class="barra">
+                        <div class="coluna sex"></div>
+                        <p>Sex</p>
+                    </div>
+
+                    <div class="barra">
+                        <div class="coluna sab"></div>
+                        <p>Sáb</p>
+                    </div>
+
+                    <div class="barra">
+                        <div class="coluna dom"></div>
+                        <p>Dom</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- AGENDAMENTOS -->
+            <section class="agendamentos">
+
+                <div class="titulo-agendamentos">
+                    <h2>Próximos Agendamentos</h2>
+                    <a href="#">Ver Todos</a>
+                </div>
+
+                <div class="agendamento">
+                    <h3>Maria Oliveira</h3>
+                    <p>09:00 - Consulta de Rotina</p>
+                </div>
+
+                <div class="agendamento">
+                    <h3>Lucas Ferreira</h3>
+                    <p>10:30 - Retorno</p>
+                </div>
+
+                <div class="agendamento">
+                    <h3>Ana Costa</h3>
+                    <p>14:00 - Primeira Consulta</p>
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- ATENDIMENTOS RECENTES -->
+        <section class="atendimentos-recentes">
+
+            <h2>Atendimentos Recentes</h2>
+
+            <table>
+
+                <tr>
+                    <th>Paciente</th>
+                    <th>Data</th>
+                    <th>Tipo</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>Gustavo Mota</td>
+                    <td>12/11/2026</td>
+                    <td>Consulta</td>
+                    <td class="concluido">Concluído</td>
+                </tr>
+
+                <tr>
+                    <td>Lucas Ferreira</td>
+                    <td>12/11/2026</td>
+                    <td>Retorno</td>
+                    <td class="andamento">Em andamento</td>
+                </tr>
+
+                <tr>
+                    <td>Ana Costa</td>
+                    <td>13/11/2026</td>
+                    <td>Primeira Consulta</td>
+                    <td class="agendado">Agendado</td>
+                </tr>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

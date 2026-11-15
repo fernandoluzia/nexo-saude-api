@@ -1,0 +1,351 @@
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F5F7FA;
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* MENU LATERAL */
+
+.sidebar {
+    background-color: #173B57;
+    width: 250px;
+    min-width: 250px;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    color: white;
+    font-size: 24px;
+    margin: 0 0 40px;
+}
+
+.sidebar nav a {
+    display: block;
+    color: #D9E8F0;
+    text-decoration: none;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.sidebar nav a:hover {
+    background-color: #28516F;
+    color: white;
+}
+
+.sidebar nav .ativo {
+    background-color: #EAF3F8;
+    color: #173B57;
+}
+
+
+/* ATALHOS RÁPIDOS */
+
+.atalhos {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: auto;
+}
+
+.atalhos h3 {
+    color: #173B57;
+    font-size: 15px;
+    margin: 0 0 12px;
+}
+
+.atalhos a {
+    display: block;
+    background-color: #F5F7FA;
+    color: #173B57;
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    border-radius: 5px;
+}
+
+.atalhos .destaque {
+    background-color: #176B87;
+    color: white;
+}
+
+
+/* CONTEÚDO PRINCIPAL */
+
+.conteudo {
+    flex: 1;
+    min-width: 0;
+    padding: 30px 40px;
+}
+
+header h1 {
+    color: #173B57;
+    font-size: 28px;
+    margin: 0;
+}
+
+header p {
+    color: #738394;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+
+/* CARDS */
+
+.indicadores {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.card {
+    background-color: white;
+    flex: 1;
+    min-width: 0;
+    min-height: 145px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.card h3 {
+    color: #617587;
+    font-size: 14px;
+    margin: 0 0 15px;
+}
+
+.card h2 {
+    color: #173B57;
+    font-size: 28px;
+    margin: 0 0 10px;
+}
+
+.card p {
+    color: #738394;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* CORES DOS INDICADORES */
+
+.card .realizadas {
+    color: #27996B;
+}
+
+.card .pendentes {
+    color: #E29A37;
+}
+
+
+/* PENDÊNCIA CRÍTICA */
+
+.alerta {
+    background-color: #FFF0F1;
+}
+
+.alerta h3 {
+    color: #C94F5B;
+}
+
+.alerta p {
+    color: #9B4B54;
+}
+
+.alerta a {
+    color: #C94F5B;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+
+/* GRÁFICO E AGENDAMENTOS */
+
+.linha-paineis {
+    display: flex;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+
+/* GRÁFICO */
+
+.grafico-consultas {
+    background-color: white;
+    flex: 3;
+    min-width: 0;
+    height: 300px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.grafico-consultas h2 {
+    color: #173B57;
+    font-size: 18px;
+    margin: 0;
+}
+
+.grafico {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 220px;
+}
+
+.barra {
+    text-align: center;
+}
+
+.coluna {
+    width: 35px;
+    background-color: #176B87;
+    border-radius: 5px 5px 0 0;
+}
+
+.seg {
+    height: 90px;
+}
+
+.ter {
+    height: 140px;
+}
+
+.qua {
+    height: 110px;
+}
+
+.qui {
+    height: 160px;
+}
+
+.sex {
+    height: 130px;
+}
+
+.sab {
+    height: 70px;
+}
+
+.dom {
+    height: 50px;
+}
+
+.barra p {
+    color: #738394;
+    font-size: 12px;
+    margin: 8px 0 0;
+}
+
+
+/* AGENDAMENTOS */
+
+.agendamentos {
+    background-color: white;
+    flex: 2;
+    min-width: 0;
+    height: 300px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.titulo-agendamentos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.titulo-agendamentos h2 {
+    color: #173B57;
+    font-size: 18px;
+    margin: 0;
+}
+
+.titulo-agendamentos a {
+    color: #176B87;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.agendamento {
+    padding: 12px 5px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.agendamento h3 {
+    color: #173B57;
+    font-size: 14px;
+    margin: 0 0 7px;
+}
+
+.agendamento p {
+    color: #738394;
+    font-size: 12px;
+    margin: 0;
+}
+
+
+/* ATENDIMENTOS RECENTES */
+
+.atendimentos-recentes {
+    background-color: white;
+    padding: 20px;
+    margin-top: 25px;
+    border-radius: 10px;
+}
+
+.atendimentos-recentes h2 {
+    color: #173B57;
+    font-size: 18px;
+    margin: 0 0 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #F5F7FA;
+    color: #526477;
+    text-align: left;
+    padding: 12px;
+    font-size: 13px;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #DDDDDD;
+    font-size: 13px;
+    color: #526477;
+}
+
+
+/* CORES DOS STATUS */
+
+.concluido {
+    color: green;
+}
+
+.andamento {
+    color: orange;
+}
+
+.agendado {
+    color: #176B87;
+}
