@@ -1,0 +1,393 @@
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F5F7FA;
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* MENU LATERAL */
+
+.sidebar {
+    background-color: #173B57;
+    width: 250px;
+    min-width: 250px;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    color: white;
+    font-size: 24px;
+    margin: 0 0 40px;
+}
+
+.sidebar nav a {
+    display: block;
+    color: #D9E8F0;
+    text-decoration: none;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.sidebar nav a:hover {
+    background-color: #28516F;
+    color: white;
+}
+
+.sidebar nav .ativo {
+    background-color: #EAF3F8;
+    color: #173B57;
+}
+
+
+/* CONTEÚDO PRINCIPAL */
+
+.conteudo {
+    flex: 1;
+    min-width: 0;
+    padding: 30px 40px;
+}
+
+
+/* CABEÇALHO */
+
+header {
+    position: relative;
+}
+
+header h1 {
+    color: #173B57;
+    font-size: 28px;
+    margin: 0;
+}
+
+header p {
+    color: #738394;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+
+
+
+.nova-consulta {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    background-color: #176B87;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.nova-consulta:hover {
+    background-color: #145A72;
+}
+
+
+
+
+.indicadores {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.cartao {
+    background-color: white;
+    border: 1px solid #D9E2EA;
+    border-radius: 12px;
+    padding: 15px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-height: 85px;
+    text-decoration: none;
+}
+
+.cartao:hover {
+    background-color: #F5F7FA;
+    border-color: #176B87;
+}
+
+.cartao h2 {
+    color: #173B57;
+    font-size: 28px;
+    margin: 0;
+}
+
+.cartao p {
+    color: #526477;
+    font-size: 14px;
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+
+
+
+.icone {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+}
+
+
+
+.azul {
+    background-color: #E5F3FC;
+    color: #176B87;
+}
+
+
+
+.verde {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+}
+
+
+
+
+.laranja {
+    background-color: #FFF4E5;
+    color: #D97706;
+}
+
+
+
+
+.vermelho {
+    background-color: #FDECEC;
+    color: #DC3545;
+}
+
+
+/* ÁREA DE FILTROS */
+.filtros {
+    background-color: white;
+    border: 1px solid #D9E2EA;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-height: 90px;
+}
+
+
+
+
+.pesquisa {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    height: 44px;
+    border: 1px solid #D9E2EA;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.pesquisa i {
+    color: #738394;
+    font-size: 18px;
+}
+
+.pesquisa input {
+    width: 100%;
+    min-width: 0;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background-color: white;
+}
+
+
+
+
+.data {
+    width: 20%;
+    min-width: 0;
+    height: 44px;
+    padding: 10px;
+    border: 1px solid #D9E2EA;
+    border-radius: 8px;
+    color: #526477;
+    background-color: white;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+
+
+
+.filtros select {
+    width: 25%;
+    min-width: 0;
+    height: 44px;
+    padding: 10px;
+    border: 1px solid #D9E2EA;
+    border-radius: 8px;
+    color: #526477;
+    background-color: white;
+    font-size: 14px;
+}
+
+
+
+
+.filtrar {
+    width: 15%;
+    height: 44px;
+    background-color: #176B87;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.filtrar:hover {
+    background-color: #145A72;
+}
+
+
+
+
+.lista-consultas {
+    background-color: white;
+    border: 1px solid #D9E2EA;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    min-height: 500px;
+    overflow-x: auto;
+}
+
+.lista-consultas h2 {
+    color: #173B57;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+th {
+    background-color: #F5F7FA;
+    color: #526477;
+    text-align: left;
+    padding: 15px;
+    font-size: 12px;
+}
+
+
+
+
+td {
+    color: #526477;
+    padding: 18px 15px;
+    border-bottom: 1px solid #E5EAF0;
+    font-size: 12px;
+}
+
+
+
+
+.status {
+    display: inline-block;
+    width: 110px;
+    padding: 9px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+
+.confirmada {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+}
+
+
+
+
+.agendada {
+    background-color: #E5F3FC;
+    color: #176B87;
+}
+
+
+
+
+.pendente {
+    background-color: #FFF4E5;
+    color: #D97706;
+}
+
+
+
+
+.cancelada {
+    background-color: #FDECEC;
+    color: #DC3545;
+}
+
+
+
+
+.acoes {
+    white-space: nowrap;
+}
+
+.acoes a {
+    color: #173B57;
+    font-size: 16px;
+    text-decoration: none;
+    margin-right: 12px;
+}
+
+.acoes a:hover {
+    color: #176B87;
+}
+
+
+
+
+.acoes .excluir {
+    color: #DC3545;
+}

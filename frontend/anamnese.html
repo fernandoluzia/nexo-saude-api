@@ -6,34 +6,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Anamnese | NEXO Saúde</title>
+    <title>NEXO Saúde - Anamnese</title>
 
-    <link rel="stylesheet" href="./src/styles/reset.css">
     <link rel="stylesheet" href="./src/styles/Anamnese.css">
 </head>
 
 <body>
 
-    <!-- Menu lateral -->
-    <aside class="menu-lateral">
+   
+
+    <aside class="sidebar">
 
         <h2>NEXO Saúde</h2>
 
         <nav>
             <a href="dashboard.html">Dashboard</a>
             <a href="pacientes.html">Pacientes</a>
-            <a href="#">Consultas</a>
-            <a href="anamnese.html">Atendimentos</a>
+            <a href="consultas.html">Consultas</a>
+            <a class="ativo" href="anamnese.html">Atendimentos</a>
             <a href="#">Usuários</a>
             <a href="#">Configurações</a>
         </nav>
 
     </aside>
 
-    <!-- Conteúdo principal -->
+
+
     <main class="conteudo-principal">
 
-        <!-- Barra superior -->
+
+      
+
         <header class="topo">
 
             <input type="search" placeholder="Buscar paciente, prontuário ou CPF...">
@@ -45,17 +48,22 @@
 
         </header>
 
-        <!-- Paciente -->
+
+       
+
         <section class="paciente">
 
             <div class="informacoes-paciente">
+
                 <h3>Mariana Silveira Costa</h3>
+
                 <p>42 anos • Feminino</p>
 
                 <div class="dados-paciente">
                     <p>Prontuário: 0001241</p>
                     <p>Convênio: Unimed</p>
                 </div>
+
             </div>
 
             <div class="botoes-paciente">
@@ -65,8 +73,11 @@
 
         </section>
 
-        <!-- Abas -->
+
+        
+
         <div class="abas">
+
             <button class="ativa">Anamnese</button>
             <button>Exame Físico</button>
             <button>Diagnóstico</button>
@@ -74,110 +85,194 @@
             <button>Exames</button>
             <button>Evolução</button>
             <button>Anexos</button>
+
         </div>
 
-        <!-- Área clínica -->
+
+       
+
         <div class="area-clinica">
 
-            <!-- Anamnese -->
+
+           
+
             <section class="formulario-anamnese">
 
                 <h2>Anamnese Clínica Estruturada</h2>
+
                 <p>Registro das informações clínicas do paciente.</p>
 
+
+                
+
                 <div class="campo-anamnese">
+
                     <label>Queixa Principal (QP)</label>
+
                     <textarea rows="3" placeholder="Descreva a queixa principal..."></textarea>
+
                 </div>
 
+
+               
+
                 <div class="campo-anamnese">
+
                     <label>Duração dos sintomas</label>
+
                     <input type="text" placeholder="Ex.: 3 dias, 2 semanas...">
+
                 </div>
 
+
+            
+
                 <div class="campo-anamnese">
+
                     <label>História da Doença Atual (HDA)</label>
+
                     <textarea rows="4" placeholder="Início, evolução e características dos sintomas..."></textarea>
+
                 </div>
 
+
+
                 <div class="campo-anamnese">
+
                     <label>Antecedentes Pessoais Patológicos (APP)</label>
+
                     <textarea rows="3" placeholder="Doenças, cirurgias e internações..."></textarea>
+
                 </div>
 
+
+             
+
                 <div class="campo-anamnese">
+
                     <label>Antecedentes Familiares (AF)</label>
+
                     <textarea rows="3" placeholder="Histórico de doenças na família..."></textarea>
+
                 </div>
 
+
+              
+
                 <div class="campo-anamnese">
+
                     <label>Hábitos de Vida (HV)</label>
+
                     <textarea rows="3" placeholder="Alimentação, exercícios, tabagismo..."></textarea>
+
                 </div>
 
+
+          
+
                 <div class="campo-anamnese">
+
                     <label>Revisão de Sistemas (RSDA)</label>
+
                     <textarea rows="4" placeholder="Sintomas relacionados aos sistemas..."></textarea>
+
                 </div>
 
+
+             
+
                 <div class="campo-anamnese">
+
                     <label>Observações / Impressão Inicial</label>
+
                     <textarea rows="3" placeholder="Observações clínicas importantes..."></textarea>
+
                 </div>
 
             </section>
 
-            <!-- Coluna direita -->
+
+         
+
             <aside class="coluna-direita">
 
-                <!-- Alergias -->
+
+            
+
                 <div class="cartao-clinico cartao-alergia">
+
                     <h3>
                         <img src="./src/assets/warning.svg" alt="Atenção">
                         Alergias e Reações
                     </h3>
+
                     <p>Penicilina</p>
+
                 </div>
 
-                <!-- Diagnóstico -->
+
+            
+
                 <div class="cartao-clinico">
+
                     <h3>Hipótese Diagnóstica</h3>
+
                     <p>CID-10: I10</p>
+
                     <p>Hipertensão essencial (primária)</p>
+
                 </div>
 
-                <!-- Prescrição -->
+
+               
+
                 <div class="cartao-clinico">
+
                     <h3>Prescrição Médica</h3>
+
                     <p>Losartana 50 mg</p>
+
                     <p>Anlodipino 5 mg</p>
+
                 </div>
 
-                <!-- Exames -->
+
+               
+
                 <div class="cartao-clinico">
+
                     <h3>Pedidos de Exames</h3>
+
                     <p>Hemograma completo</p>
+
                     <p>Creatinina</p>
+
                     <p>Eletrocardiograma (ECG)</p>
+
                 </div>
 
-<!-- Visualização Anatômica -->
-<div class="cartao-clinico cartao-anatomia">
 
-    <h3>Visualização Anatômica</h3>
+               
 
-    <p>Modelo anatômico para apoio à avaliação clínica.</p>
+                <div class="cartao-clinico cartao-anatomia">
 
-    <div class="visualizacao-corpo">
-        <video autoplay loop muted playsinline>
-            <source src="./src/assets/gif.mp4" type="video/mp4">
-        </video>
-    </div>
+                    <h3>Visualização Anatômica</h3>
 
-    <button>Explorar anatomia</button>
+                    <p>Modelo anatômico para apoio à avaliação clínica.</p>
 
-</div>
+                    <div class="visualizacao-corpo">
 
+                        <video autoplay loop muted playsinline>
+
+                            <source src="./src/assets/gif.mp4" type="video/mp4">
+
+                        </video>
+
+                    </div>
+
+                    <button>Explorar anatomia</button>
+
+                </div>
 
             </aside>
 

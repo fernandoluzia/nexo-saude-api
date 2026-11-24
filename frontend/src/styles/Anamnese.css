@@ -1,36 +1,38 @@
 
 
-body {
-    margin: 0;
-    display: flex;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    background-color: #f5f7fa;
+
+* {
+    box-sizing: border-box;
 }
 
-/* MENU LATERAL */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F5F7FA;
+    display: flex;
+    min-height: 100vh;
+}
 
 
-/* MENU LATERAL */
 
-.menu-lateral {
+
+.sidebar {
     background-color: #173B57;
     width: 250px;
     min-width: 250px;
     min-height: 100vh;
     padding: 20px;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
 }
 
-.menu-lateral h2 {
+.sidebar h2 {
     color: white;
     font-size: 24px;
     margin: 0 0 40px;
 }
 
-.menu-lateral nav a {
+.sidebar nav a {
     display: block;
     color: #D9E8F0;
     text-decoration: none;
@@ -40,33 +42,26 @@ body {
     font-size: 15px;
 }
 
-.menu-lateral nav a:hover {
+.sidebar nav a:hover {
     background-color: #28516F;
     color: white;
 }
 
-.menu-lateral nav .ativo {
+.sidebar nav .ativo {
     background-color: #EAF3F8;
     color: #173B57;
 }
 
-
-
-/* PÁGINA ATUAL */
-
-.menu-lateral .pagina-atual {
-    background-color: #29536f;
-}
 
 /* CONTEÚDO PRINCIPAL */
 
 .conteudo-principal {
     flex: 1;
     min-width: 0;
-    background-color: #f5f7fa;
+    background-color: #F5F7FA;
 }
 
-/* BARRA SUPERIOR */
+
 
 .topo {
     display: flex;
@@ -80,17 +75,20 @@ body {
     width: 350px;
     max-width: 60%;
     padding: 10px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #E2E8F0;
     border-radius: 5px;
     font-size: 12px;
 }
+
+
+
 
 .medico {
     display: flex;
     flex-direction: column;
     text-align: right;
     font-size: 12px;
-    color: #193d58;
+    color: #193D58;
 }
 
 .medico span {
@@ -99,7 +97,8 @@ body {
     margin-top: 4px;
 }
 
-/* CARTÃO DA PACIENTE */
+
+
 
 .paciente {
     display: flex;
@@ -109,18 +108,18 @@ body {
     margin: 18px 25px 12px;
     padding: 14px 18px;
     background-color: white;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #E2E8F0;
     border-radius: 7px;
 }
 
 .paciente h3 {
-    color: #193d58;
+    color: #193D58;
     font-size: 15px;
     margin: 0 0 5px;
 }
 
 .paciente p {
-    color: #64748b;
+    color: #64748B;
     font-size: 11px;
     margin: 3px 0;
 }
@@ -131,7 +130,7 @@ body {
     margin-top: 6px;
 }
 
-/* BOTÕES DA PACIENTE */
+
 
 .botoes-paciente {
     display: flex;
@@ -141,18 +140,19 @@ body {
 .botoes-paciente button {
     padding: 7px 10px;
     background-color: white;
-    color: #193d58;
-    border: 1px solid #7ba9c2;
+    color: #193D58;
+    border: 1px solid #7BA9C2;
     border-radius: 5px;
     font-size: 11px;
     cursor: pointer;
 }
 
 .botoes-paciente button:hover {
-    background-color: #edf5fa;
+    background-color: #EDF5FA;
 }
 
-/* ABAS DO PRONTUÁRIO */
+
+
 
 .abas {
     display: flex;
@@ -161,26 +161,27 @@ body {
     margin: 0 25px 15px;
     padding: 8px 12px;
     background-color: white;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #E2E8F0;
     border-radius: 5px;
 }
 
 .abas button {
     padding: 8px;
-    background: none;
+    background-color: white;
     border: none;
-    color: #64748b;
+    color: #64748B;
     font-size: 11px;
     cursor: pointer;
 }
 
 .abas .ativa {
-    color: #193d58;
+    color: #193D58;
     font-weight: bold;
-    border-bottom: 2px solid #2b8dbd;
+    border-bottom: 2px solid #2B8DBD;
 }
 
-/* ÁREA CLÍNICA */
+
+
 
 .area-clinica {
     display: flex;
@@ -189,7 +190,8 @@ body {
     align-items: stretch;
 }
 
-/* COLUNA ESQUERDA - ANAMNESE */
+
+
 
 .formulario-anamnese {
     width: 65%;
@@ -197,24 +199,24 @@ body {
     padding: 20px;
     margin-bottom: 15px;
     background-color: white;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #E2E8F0;
     border-radius: 7px;
-    box-sizing: border-box;
 }
 
 .formulario-anamnese h2 {
-    color: #193d58;
+    color: #193D58;
     font-size: 16px;
     margin: 0 0 8px;
 }
 
 .formulario-anamnese p {
-    color: #64748b;
+    color: #64748B;
     font-size: 12px;
     margin: 0;
 }
 
-/* CAMPOS DA ANAMNESE */
+
+
 
 .campo-anamnese {
     margin-top: 20px;
@@ -223,82 +225,98 @@ body {
 .campo-anamnese label {
     display: block;
     margin-bottom: 8px;
-    color: #193d58;
+    color: #193D58;
     font-size: 12px;
     font-weight: bold;
 }
 
-/* CAIXAS DE TEXTO */
 
-.campo-anamnese textarea,
+
+
+.campo-anamnese textarea {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: white;
+    color: #193D58;
+    border: 1px solid #D5DCE3;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    resize: vertical;
+}
+
+
+
+
 .campo-anamnese input {
     display: block;
     width: 100%;
     padding: 12px;
     background-color: white;
-    color: #193d58;
-    border: 1px solid #d5dce3;
+    color: #193D58;
+    border: 1px solid #D5DCE3;
     border-radius: 6px;
-    box-sizing: border-box;
     font-family: Arial, sans-serif;
     font-size: 12px;
 }
 
-.campo-anamnese textarea {
-    resize: vertical;
+
+.campo-anamnese textarea:focus {
+    outline: none;
+    border-color: #2B8DBD;
 }
 
-/* BORDA AZUL AO CLICAR */
-
-.campo-anamnese textarea:focus,
 .campo-anamnese input:focus {
     outline: none;
-    border-color: #2b8dbd;
+    border-color: #2B8DBD;
 }
 
-/* COLUNA DIREITA */
+
+
 
 .coluna-direita {
     width: 35%;
     min-width: 0;
 }
 
-/* CARTÕES CLÍNICOS */
+
+
 
 .cartao-clinico {
     padding: 18px;
     margin-bottom: 15px;
     background-color: white;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #E2E8F0;
     border-radius: 7px;
 }
 
 .cartao-clinico h3 {
-    color: #193d58;
+    color: #193D58;
     font-size: 14px;
     margin: 0 0 12px;
 }
 
 .cartao-clinico p {
-    color: #64748b;
+    color: #64748B;
     font-size: 12px;
     margin: 8px 0;
 }
 
-/* ALERTA DE ALERGIA */
+
 
 .cartao-alergia {
-    background-color: #fff5f5;
-    border: 1px solid #f5b5b5;
-    border-left: 4px solid #dc2626;
+    background-color: #FFF5F5;
+    border: 1px solid #F5B5B5;
+    border-left: 4px solid #DC2626;
 }
 
 .cartao-alergia h3 {
-    color: #b91c1c;
+    color: #B91C1C;
 }
 
 .cartao-alergia p {
-    color: #991b1b;
+    color: #991B1B;
 }
 
 .cartao-alergia img {
@@ -308,7 +326,7 @@ body {
     vertical-align: middle;
 }
 
-/* VISUALIZAÇÃO ANATÔMICA */
+
 
 .cartao-anatomia h3 {
     text-align: left;
@@ -319,7 +337,8 @@ body {
     margin-bottom: 15px;
 }
 
-/* ÁREA DO VÍDEO */
+
+
 
 .visualizacao-corpo {
     background-color: #071727;
@@ -335,13 +354,14 @@ body {
     object-fit: contain;
 }
 
-/* BOTÃO DA ANATOMIA */
+
+
 
 .cartao-anatomia button {
     width: 100%;
     padding: 12px;
     margin-top: 15px;
-    background-color: #2b8dbd;
+    background-color: #2B8DBD;
     color: white;
     border: none;
     border-radius: 6px;
@@ -350,10 +370,11 @@ body {
 }
 
 .cartao-anatomia button:hover {
-    background-color: #193d58;
+    background-color: #193D58;
 }
 
-/* TELAS MENORES */
+
+
 
 @media (max-width: 1100px) {
 
@@ -361,24 +382,32 @@ body {
         flex-direction: column;
     }
 
-    .formulario-anamnese,
+    .formulario-anamnese {
+        width: 100%;
+    }
+
     .coluna-direita {
         width: 100%;
     }
+
 }
+
+
+
 
 @media (max-width: 700px) {
 
-    .menu-lateral {
+    .sidebar {
         width: 150px;
+        min-width: 150px;
         padding: 15px;
     }
 
-    .menu-lateral h2 {
+    .sidebar h2 {
         font-size: 18px;
     }
 
-    .menu-lateral a {
+    .sidebar nav a {
         font-size: 12px;
         padding: 10px 5px;
     }
@@ -415,4 +444,5 @@ body {
     .area-clinica {
         margin: 0 15px;
     }
+
 }

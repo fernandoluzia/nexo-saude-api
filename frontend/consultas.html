@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NEXO Saúde - Consultas</title>
+
+    <link rel="stylesheet" href="./src/styles/consultas.css">
+
+    <!-- ÍCONES BOOTSTRAP -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+    <!-- MENU LATERAL -->
+
+    <aside class="sidebar">
+
+        <h2>NEXO Saúde</h2>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="pacientes.html">Pacientes</a>
+            <a class="ativo" href="consultas.html">Consultas</a>
+            <a href="anamnese.html">Atendimentos</a>
+            <a href="#">Usuários</a>
+            <a href="#">Configurações</a>
+        </nav>
+
+    </aside>
+
+
+    <!-- CONTEÚDO PRINCIPAL -->
+
+    <main class="conteudo">
+
+
+ 
+
+        <header>
+
+            <h1>Consultas</h1>
+
+            <p>Gerencie a agenda, os agendamentos e o histórico de atendimentos.</p>
+
+            <a class="nova-consulta" href="#">+ Nova Consulta</a>
+
+        </header>
+
+
+
+
+        <section class="indicadores">
+
+          
+            <a class="cartao" href="#">
+
+                <div class="icone azul">
+                    <i class="bi bi-calendar3"></i>
+                </div>
+
+                <div>
+                    <h2>24</h2>
+                    <p>Agendadas</p>
+                </div>
+
+            </a>
+
+
+           
+
+            <a class="cartao" href="#">
+
+                <div class="icone verde">
+                    <i class="bi bi-calendar-check"></i>
+                </div>
+
+                <div>
+                    <h2>18</h2>
+                    <p>Confirmadas</p>
+                </div>
+
+            </a>
+
+
+
+
+            <a class="cartao" href="#">
+
+                <div class="icone laranja">
+                    <i class="bi bi-clock-history"></i>
+                </div>
+
+                <div>
+                    <h2>4</h2>
+                    <p>Pendentes</p>
+                </div>
+
+            </a>
+
+
+
+            <a class="cartao" href="#">
+
+                <div class="icone vermelho">
+                    <i class="bi bi-calendar-x"></i>
+                </div>
+
+                <div>
+                    <h2>2</h2>
+                    <p>Canceladas</p>
+                </div>
+
+            </a>
+
+        </section>
+
+
+
+
+        <section class="filtros">
+
+  
+
+            <div class="pesquisa">
+
+                <i class="bi bi-search"></i>
+
+                <input type="text" placeholder="Buscar paciente...">
+
+            </div>
+
+
+        
+
+            <input class="data" type="date">
+
+
+   
+
+            <select>
+                <option>Todos os status</option>
+                <option>Agendada</option>
+                <option>Confirmada</option>
+                <option>Pendente</option>
+                <option>Cancelada</option>
+            </select>
+
+
+      
+
+            <button class="filtrar">
+                <i class="bi bi-funnel"></i>
+                Filtrar
+            </button>
+
+        </section>
+
+
+   
+
+        <section class="lista-consultas">
+
+            <h2>Consultas agendadas</h2>
+
+            <table>
+
+            
+
+                <tr>
+                    <th>Paciente</th>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Médico</th>
+                    <th>Especialidade</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+
+
+      
+
+                <tr>
+                    <td>Mariana Silveira Costa</td>
+                    <td>24/11/2026</td>
+                    <td>09:00</td>
+                    <td>Dr. Rafael Silva</td>
+                    <td>Cardiologia</td>
+
+                    <td>
+                        <span class="status confirmada">Confirmada</span>
+                    </td>
+
+                    <td class="acoes">
+                        <a href="#" title="Visualizar"><i class="bi bi-eye"></i></a>
+                        <a href="#" title="Editar"><i class="bi bi-pencil"></i></a>
+                        <a class="excluir" href="#" title="Excluir"><i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+
+
+         
+
+                <tr>
+                    <td>Maria Oliveira</td>
+                    <td>24/11/2026</td>
+                    <td>10:00</td>
+                    <td>Dr. Rafael Silva</td>
+                    <td>Cardiologia</td>
+
+                    <td>
+                        <span class="status agendada">Agendada</span>
+                    </td>
+
+                    <td class="acoes">
+                        <a href="#" title="Visualizar"><i class="bi bi-eye"></i></a>
+                        <a href="#" title="Editar"><i class="bi bi-pencil"></i></a>
+                        <a class="excluir" href="#" title="Excluir"><i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td>Lucas Correia</td>
+                    <td>24/11/2026</td>
+                    <td>11:00</td>
+                    <td>Dr. Rafael Silva</td>
+                    <td>Cardiologia</td>
+
+                    <td>
+                        <span class="status pendente">Pendente</span>
+                    </td>
+
+                    <td class="acoes">
+                        <a href="#" title="Visualizar"><i class="bi bi-eye"></i></a>
+                        <a href="#" title="Editar"><i class="bi bi-pencil"></i></a>
+                        <a class="excluir" href="#" title="Excluir"><i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+
+
+
+                <tr>
+                    <td>Fernando Luzia</td>
+                    <td>24/11/2026</td>
+                    <td>14:00</td>
+                    <td>Dr. Rafael Silva</td>
+                    <td>Cardiologia</td>
+
+                    <td>
+                        <span class="status confirmada">Confirmada</span>
+                    </td>
+
+                    <td class="acoes">
+                        <a href="#" title="Visualizar"><i class="bi bi-eye"></i></a>
+                        <a href="#" title="Editar"><i class="bi bi-pencil"></i></a>
+                        <a class="excluir" href="#" title="Excluir"><i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+
+
+  
+
+                <tr>
+                    <td>Carla Santos</td>
+                    <td>24/11/2026</td>
+                    <td>15:00</td>
+                    <td>Dr. Rafael Silva</td>
+                    <td>Cardiologia</td>
+
+                    <td>
+                        <span class="status cancelada">Cancelada</span>
+                    </td>
+
+                    <td class="acoes">
+                        <a href="#" title="Visualizar"><i class="bi bi-eye"></i></a>
+                        <a href="#" title="Editar"><i class="bi bi-pencil"></i></a>
+                        <a class="excluir" href="#" title="Excluir"><i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+
+
+
+                <tr>
+                    <td>João Mendes</td>
+                    <td>24/11/2026</td>
+                    <td>16:00</td>
+                    <td>Dr. Rafael Silva</td>
+                    <td>Cardiologia</td>
+
+                    <td>
+                        <span class="status agendada">Agendada</span>
+                    </td>
+
+                    <td class="acoes">
+                        <a href="#" title="Visualizar"><i class="bi bi-eye"></i></a>
+                        <a href="#" title="Editar"><i class="bi bi-pencil"></i></a>
+                        <a class="excluir" href="#" title="Excluir"><i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
