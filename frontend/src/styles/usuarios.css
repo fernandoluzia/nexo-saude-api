@@ -1,0 +1,332 @@
+/* Configurações gerais */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F5F7FA;
+    display: flex;
+    min-height: 100vh;
+}
+
+
+
+
+.sidebar {
+    width: 250px;
+    min-width: 250px;
+    background-color: #173B57;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    color: #FFFFFF;
+    font-size: 24px;
+    margin: 0 0 40px;
+}
+
+.sidebar nav a {
+    display: block;
+    text-decoration: none;
+    color: #D9E8F0;
+    font-size: 15px;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+}
+
+.sidebar nav a:hover {
+    background-color: #28516F;
+    color: #FFFFFF;
+}
+
+.sidebar nav a.ativo {
+    background-color: #EAF3F8;
+    color: #173B57;
+}
+
+
+
+
+.conteudo-principal {
+    flex: 1;
+    min-width: 0;
+    padding: 30px;
+}
+
+
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.titulo h1 {
+    font-size: 28px;
+    color: #173B57;
+    margin: 0 0 8px;
+}
+
+.titulo p {
+    font-size: 14px;
+    color: #738394;
+    margin: 0;
+}
+
+
+
+
+.novo-usuario {
+    width: 160px;
+    height: 44px;
+    background-color: #176B87;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.novo-usuario:hover {
+    background-color: #173B57;
+}
+
+
+
+
+.filtros {
+    display: flex;
+    gap: 16px;
+    margin-top: 40px;
+    margin-bottom: 25px;
+}
+
+.pesquisa {
+    width: 340px;
+    height: 44px;
+    padding: 12px 15px;
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #526477;
+    outline: none;
+}
+
+.pesquisa:focus {
+    border-color: #176B87;
+}
+
+.filtro-cargo {
+    width: 180px;
+    height: 44px;
+    padding: 10px;
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #526477;
+    cursor: pointer;
+    outline: none;
+}
+
+.filtro-cargo:focus {
+    border-color: #176B87;
+}
+
+
+
+
+.equipe {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+
+
+
+.card-usuario {
+    flex: 1;
+    min-width: 240px;
+    max-width: 360px;
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 24px 20px 20px;
+    text-align: center;
+
+    
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.56);
+}
+
+
+
+
+.foto-perfil {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #EAF3F8;
+}
+
+
+
+
+.card-usuario h2 {
+    font-size: 18px;
+    color: #173B57;
+    margin: 14px 0 6px;
+}
+
+
+.cargo {
+    font-size: 14px;
+    color: #738394;
+    margin: 0 0 12px;
+}
+
+
+
+
+.status-ativo {
+    display: inline-block;
+    background-color: #E8F5E9;
+    color: #16A34A;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+
+
+
+.divisoria {
+    border: none;
+    border-top: 1px solid #E2E8F0;
+    margin: 20px 0 16px;
+}
+
+
+
+
+.informacoes {
+    margin-bottom: 20px;
+}
+
+.informacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 12px;
+}
+
+.informacao span {
+    color: #738394;
+    text-align: left;
+}
+
+.informacao strong {
+    color: #173B57;
+    text-align: right;
+}
+
+
+
+
+.gerenciar {
+    width: 100%;
+    height: 36px;
+    background-color: #FFFFFF;
+    color: #176B87;
+    border: 1px solid #176B87;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.gerenciar:hover {
+    background-color: #176B87;
+    color: #FFFFFF;
+}
+
+
+
+@media (max-width: 1100px) {
+
+    .card-usuario {
+        min-width: 220px;
+    }
+
+    .conteudo-principal {
+        padding: 25px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        width: 150px;
+        min-width: 150px;
+        padding: 15px;
+    }
+
+    .sidebar h2 {
+        font-size: 18px;
+    }
+
+    .sidebar nav a {
+        font-size: 12px;
+        padding: 10px 5px;
+    }
+
+    .conteudo-principal {
+        padding: 15px;
+    }
+
+    .cabecalho {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .titulo h1 {
+        font-size: 22px;
+    }
+
+    .filtros {
+        flex-direction: column;
+        margin-top: 25px;
+    }
+
+    .pesquisa {
+        width: 100%;
+    }
+
+    .filtro-cargo {
+        width: 100%;
+    }
+
+    .equipe {
+        flex-direction: column;
+    }
+
+    .card-usuario {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+
+}

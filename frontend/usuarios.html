@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXO Saúde - Usuários</title>
+
+    <link rel="stylesheet" href="./src/styles/usuarios.css">
+</head>
+
+<body>
+
+    <!-- Menu lateral padrão -->
+    <aside class="sidebar">
+
+        <h2>NEXO Saúde</h2>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="pacientes.html">Pacientes</a>
+            <a href="consultas.html">Consultas</a>
+            <a href="anamnese.html">Atendimentos</a>
+            <a class="ativo" href="usuarios.html">Usuários</a>
+            <a href="#">Configurações</a>
+        </nav>
+
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="conteudo-principal">
+
+        <!-- Cabeçalho da página -->
+        <header class="cabecalho">
+
+            <div class="titulo">
+                <h1>Gestão de Equipe</h1>
+                <p>Gerencie os usuários e níveis de acesso ao sistema.</p>
+            </div>
+
+            <button class="novo-usuario">
+                + Novo usuário
+            </button>
+
+        </header>
+
+        <!-- Pesquisa e filtro -->
+        <section class="filtros">
+
+            <input class="pesquisa" type="search"
+                placeholder="Buscar profissional...">
+
+            <select class="filtro-cargo">
+                <option>Todos os cargos</option>
+                <option>Médico</option>
+                <option>Recepcionista</option>
+                <option>Administrador</option>
+            </select>
+
+        </section>
+
+        <!-- Área dos cartões -->
+        <section class="equipe">
+
+            <!-- Primeiro profissional -->
+            <article class="card-usuario">
+
+                <img class="foto-perfil"
+                    src="./src/assets/foto1.jpg"
+                    alt="Foto do Dr. Rafael Silva">
+
+                <h2>Dr. Rafael Silva</h2>
+
+                <p class="cargo">Cardiologista</p>
+
+                <span class="status-ativo">
+                    ● Ativo
+                </span>
+
+                <hr class="divisoria">
+
+                <!-- Informações do profissional -->
+                <div class="informacoes">
+
+                    <div class="informacao">
+                        <span>Nível de acesso</span>
+                        <strong>Médico</strong>
+                    </div>
+
+                    <div class="informacao">
+                        <span>Departamento</span>
+                        <strong>Cardiologia</strong>
+                    </div>
+
+                </div>
+
+                <button class="gerenciar">
+                    Gerenciar usuário
+                </button>
+
+            </article>
+
+            <!-- Segundo profissional -->
+            <article class="card-usuario">
+
+                <img class="foto-perfil"
+                    src="./src/assets/foto2.png"
+                    alt="Foto de Mariana Costa">
+
+                <h2>Mariana Costa</h2>
+
+                <p class="cargo">Recepcionista</p>
+
+                <span class="status-ativo">
+                    ● Ativo
+                </span>
+
+                <hr class="divisoria">
+
+                <!-- Informações do profissional -->
+                <div class="informacoes">
+
+                    <div class="informacao">
+                        <span>Nível de acesso</span>
+                        <strong>Recepção</strong>
+                    </div>
+
+                    <div class="informacao">
+                        <span>Departamento</span>
+                        <strong>Atendimento</strong>
+                    </div>
+
+                </div>
+
+                <button class="gerenciar">
+                    Gerenciar usuário
+                </button>
+
+            </article>
+
+            <!-- Terceiro profissional -->
+            <article class="card-usuario">
+
+                <img class="foto-perfil"
+                    src="./src/assets/foto3.png"
+                    alt="Foto de Pedro Almeida">
+
+                <h2>Pedro Almeida</h2>
+
+                <p class="cargo">Administrador</p>
+
+                <span class="status-ativo">
+                    ● Ativo
+                </span>
+
+                <hr class="divisoria">
+
+                <!-- Informações do profissional -->
+                <div class="informacoes">
+
+                    <div class="informacao">
+                        <span>Nível de acesso</span>
+                        <strong>Administrador</strong>
+                    </div>
+
+                    <div class="informacao">
+                        <span>Departamento</span>
+                        <strong>TI / Gestão</strong>
+                    </div>
+
+                </div>
+
+                <button class="gerenciar">
+                    Gerenciar usuário
+                </button>
+
+            </article>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
