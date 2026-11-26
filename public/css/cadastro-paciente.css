@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F5F7FA;
+    display: flex;
+    min-height: 100vh;
+}
+
+
+.sidebar {
+    width: 250px;
+    min-width: 250px;
+    background-color: #173B57;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.sidebar nav a {
+    display: block;
+    color: #D9E8F0;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+}
+
+.sidebar nav a i {
+    margin-right: 10px;
+}
+
+.sidebar nav a:hover {
+    background-color: #28516F;
+    color: white;
+}
+
+.sidebar nav a.ativo {
+    background-color: #EAF3F8;
+    color: #173B57;
+}
+
+
+.conteudo {
+    flex: 1;
+    min-width: 0;
+    padding: 50px 30px 40px;
+}
+
+.cabecalho {
+    margin-bottom: 24px;
+}
+
+.cabecalho h1 {
+    font-size: 28px;
+    color: #173B57;
+    margin-bottom: 8px;
+}
+
+.cabecalho p {
+    font-size: 14px;
+    color: #526477;
+}
+
+
+
+.card {
+    background-color: white;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.card h2 {
+    font-size: 20px;
+    color: #173B57;
+    margin-bottom: 20px;
+}
+
+.card h2 i {
+    color: #176B87;
+    margin-right: 8px;
+}
+
+.cards-centrais {
+    display: grid;
+    grid-template-columns: 450fr 660fr;
+    gap: 20px;
+}
+
+
+.linha {
+    display: flex;
+    gap: 16px;
+}
+
+.campo {
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 16px;
+}
+
+.campo-duplo {
+    flex: 2;
+}
+
+.campo label {
+    display: block;
+    font-size: 14px;
+    color: #173B57;
+    margin-bottom: 8px;
+}
+
+.campo input,
+.campo select {
+    width: 100%;
+    height: 40px;
+    padding: 0 15px;
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+    background-color: #F5F7FA;
+    color: #173B57;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+
+.campo input::placeholder {
+    color: #738394;
+}
+
+.campo input:focus,
+.campo select:focus {
+    border-color: #176B87;
+}
+
+.campo select {
+    cursor: pointer;
+}
+
+#cep {
+    padding: 0 10px;
+}
+
+#numero {
+    padding: 0 10px;
+}
+
+
+
+.botoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 28px;
+}
+
+.cancelar,
+.cadastrar {
+    height: 44px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cancelar {
+    width: 120px;
+    background-color: white;
+    border: 1px solid #CBD5E1;
+    color: #526477;
+    text-decoration: none;
+}
+
+.cancelar:hover {
+    background-color: #EAF3F8;
+}
+
+.cadastrar {
+    width: 194px;
+    background-color: #176B87;
+    color: white;
+    border: none;
+}
+
+.cadastrar:hover {
+    background-color: #12566D;
+}
+
+
+
+@media (max-width: 1100px) {
+    .cards-centrais {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+        min-width: 200px;
+    }
+
+    .conteudo {
+        padding: 24px;
+    }
+
+    .linha {
+        flex-direction: column;
+        gap: 0;
+    }
+}

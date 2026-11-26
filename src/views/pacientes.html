@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -24,99 +23,74 @@
             <a href="anamnese.html">Atendimentos</a>
             <a href="./usuarios.html">Usuários</a>
             <a href="./configuracoes.html">Configurações</a>
+
         </nav>
 
     </aside>
 
-
-    
     <main class="conteudo">
 
-       
         <header>
             <h1>Gestão de Pacientes</h1>
             <p>Gerencie os pacientes cadastrados na clínica.</p>
 
-            <a class="novo-paciente" href="#">+ Novo Paciente</a>
+            <a class="novo-paciente" href="cadastro-paciente.html" id="novo-paciente">
+                 + Novo Paciente
+            </a>
         </header>
 
-
-    
+        <!-- Filtros de pacientes -->
         <section class="filtros">
 
-            <input type="text" placeholder="Buscar por nome, CPF ou prontuário...">
+            <input type="text" id="busca"
+                placeholder="Buscar por nome, CPF ou prontuário...">
 
-            <select>
-                <option>Todos os status</option>
-                <option>Ativo</option>
-                <option>Inativo</option>
+            <select id="filtro-status">
+                <option value="">Todos os status</option>
+                <option value="Ativo">Ativo</option>
+                <option value="Inativo">Inativo</option>
             </select>
 
-            <select>
-                <option>Todos os convênios</option>
-                <option>Particular</option>
-                <option>Unimed</option>
+            <select id="filtro-convenio">
+                <option value="">Todos os convênios</option>
+                <option value="Particular">Particular</option>
+                <option value="Unimed">Unimed</option>
             </select>
 
         </section>
 
-
+        <!-- Tabela de pacientes -->
         <section class="lista-pacientes">
 
             <table>
 
-                <tr>
-                    <th>Prontuário</th>
-                    <th>Paciente</th>
-                    <th>CPF</th>
-                    <th>Contato</th>
-                    <th>Convênio</th>
-                    <th>Cadastro</th>
-                    <th>Última Consulta</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Prontuário</th>
+                        <th>Paciente</th>
+                        <th>CPF</th>
+                        <th>Contato</th>
+                        <th>Convênio</th>
+                        <th>Cadastro</th>
+                        <th>Última Consulta</th>
+                    </tr>
+                </thead>
 
-                <tr>
-                    <td>000001</td>
-                    <td>Maria Oliveira</td>
-                    <td>123.456.789-00</td>
-                    <td>(11) 99999-1234</td>
-                    <td>Particular</td>
-                    <td>01/11/2026</td>
-                    <td>10/11/2026</td>
-                </tr>
+                <!-- Pacientes carregados pelo JavaScript -->
+                <tbody id="tabela-pacientes">
 
-                <tr>
-                    <td>000002</td>
-                    <td>Lucas Correia</td>
-                    <td>987.654.321-00</td>
-                    <td>(11) 98888-5678</td>
-                    <td>Unimed</td>
-                    <td>02/11/2026</td>
-                    <td>05/11/2026</td>
-                </tr>
-
-                <tr>
-                    <td>000003</td>
-                    <td>Fernando Luzia</td>
-                    <td>456.789.123-00</td>
-                    <td>(11) 97777-4321</td>
-                    <td>Particular</td>
-                    <td>03/11/2026</td>
-                    <td>01/11/2026</td>
-                </tr>
+                </tbody>
 
             </table>
 
-
-           
             <div class="paginacao">
 
-                <p>Mostrando 3 de 3 pacientes</p>
+                <p id="total-pacientes">Carregando pacientes...</p>
 
                 <div class="paginas">
-                    <a href="#">Anterior</a>
-                    <a class="pagina-atual" href="#">1</a>
-                    <a href="#">Próximo</a>
+                    <a href="#" id="anterior">Anterior</a>
+                    <a class="pagina-atual" href="#" id="pagina-atual">1</a>
+                    <a href="#" id="proximo">Próximo</a>
                 </div>
 
             </div>
@@ -124,6 +98,9 @@
         </section>
 
     </main>
+
+    <!-- JavaScript da página -->
+    <script src="/js/pacientes.js"></script>
 
 </body>
 </html>

@@ -25,6 +25,7 @@ const telas = {
     '/login.html': 'login.html',
     '/dashboard.html': 'dashboard.html',
     '/pacientes.html': 'pacientes.html',
+    '/cadastro-paciente.html': 'cadastro-paciente.html',
     '/consultas.html': 'consultas.html',
     '/anamnese.html': 'anamnese.html',
     '/usuarios.html': 'usuarios.html',
