@@ -1,6 +1,5 @@
 const db = require('../config/database');
 
-// Função responsável pelas rotas de pacientes
 async function rotasPacientes(requisicao, resposta) {
 
     const metodo = requisicao.method;
@@ -10,11 +9,11 @@ async function rotasPacientes(requisicao, resposta) {
         'Content-Type': 'application/json; charset=utf-8'
     };
 
-    // GET - Listar todos os pacientes
+    // GET - Listar pacientes
     if (metodo === 'GET' && rota === '/pacientes') {
 
         const [linhas] = await db.query(
-            'SELECT * FROM pacientes'
+            'SELECT * FROM pacientes ORDER BY nome'
         );
 
         resposta.writeHead(200, jsonHeader);
@@ -34,6 +33,7 @@ async function rotasPacientes(requisicao, resposta) {
         );
 
         if (linhas.length === 0) {
+
             resposta.writeHead(404, jsonHeader);
             resposta.end(JSON.stringify({
                 mensagem: 'Paciente não encontrado'
@@ -54,30 +54,51 @@ async function rotasPacientes(requisicao, resposta) {
         const dados = await receberDados(requisicao);
 
         if (!validarPaciente(dados)) {
+
             resposta.writeHead(400, jsonHeader);
             resposta.end(JSON.stringify({
-                mensagem: 'Informe nome e telefone válidos'
+                mensagem: 'Informe dados válidos do paciente'
             }));
 
             return true;
         }
 
-        const nome = dados.nome.trim();
-        const telefone = dados.telefone.trim();
-        const servico = dados.servico || null;
+        const paciente = prepararPaciente(dados);
 
-        const [resultado] = await db.query(
-            'INSERT INTO pacientes (nome, telefone, servico) VALUES (?, ?, ?)',
-            [nome, telefone, servico]
-        );
+        try {
 
-        resposta.writeHead(201, jsonHeader);
-        resposta.end(JSON.stringify({
-            id: resultado.insertId,
-            nome,
-            telefone,
-            servico
-        }));
+            const [resultado] = await db.query(
+                `INSERT INTO pacientes
+                (nome, telefone, servico, cpf, convenio,
+                status, data_nascimento, email, endereco,
+                sexo, cep, rua, numero, complemento,
+                bairro, cidade, estado, nome_emergencia,
+                parentesco, telefone_emergencia)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                Object.values(paciente)
+            );
+
+            resposta.writeHead(201, jsonHeader);
+            resposta.end(JSON.stringify({
+                id: resultado.insertId,
+                mensagem: 'Paciente cadastrado com sucesso'
+            }));
+
+        } catch (erro) {
+
+            if (erro.code === 'ER_DUP_ENTRY') {
+
+                resposta.writeHead(409, jsonHeader);
+                resposta.end(JSON.stringify({
+                    mensagem: 'CPF já cadastrado'
+                }));
+
+                return true;
+            }
+
+            throw erro;
+        }
 
         return true;
     }
@@ -89,75 +110,93 @@ async function rotasPacientes(requisicao, resposta) {
         const dados = await receberDados(requisicao);
 
         if (!validarPaciente(dados)) {
+
             resposta.writeHead(400, jsonHeader);
             resposta.end(JSON.stringify({
-                mensagem: 'Informe nome e telefone válidos'
+                mensagem: 'Informe dados válidos do paciente'
             }));
 
             return true;
         }
 
-        const nome = dados.nome.trim();
-        const telefone = dados.telefone.trim();
-        const servico = dados.servico || null;
+        const paciente = prepararPaciente(dados);
 
-        const [resultado] = await db.query(
-            'UPDATE pacientes SET nome = ?, telefone = ?, servico = ? WHERE id = ?',
-            [nome, telefone, servico, id]
-        );
+        try {
 
-        if (resultado.affectedRows === 0) {
-            resposta.writeHead(404, jsonHeader);
+            const [resultado] = await db.query(
+                `UPDATE pacientes SET
+                nome = ?,
+                telefone = ?,
+                servico = ?,
+                cpf = ?,
+                convenio = ?,
+                status = ?,
+                data_nascimento = ?,
+                email = ?,
+                endereco = ?,
+                sexo = ?,
+                cep = ?,
+                rua = ?,
+                numero = ?,
+                complemento = ?,
+                bairro = ?,
+                cidade = ?,
+                estado = ?,
+                nome_emergencia = ?,
+                parentesco = ?,
+                telefone_emergencia = ?
+                WHERE id = ?`,
+                [...Object.values(paciente), id]
+            );
+
+            if (resultado.affectedRows === 0) {
+
+                resposta.writeHead(404, jsonHeader);
+                resposta.end(JSON.stringify({
+                    mensagem: 'Paciente não encontrado'
+                }));
+
+                return true;
+            }
+
+            resposta.writeHead(200, jsonHeader);
             resposta.end(JSON.stringify({
-                mensagem: 'Paciente não encontrado'
+                mensagem: 'Paciente atualizado com sucesso'
             }));
 
-            return true;
-        }
+        } catch (erro) {
 
-        resposta.writeHead(200, jsonHeader);
-        resposta.end(JSON.stringify({
-            id,
-            nome,
-            telefone,
-            servico
-        }));
+            if (erro.code === 'ER_DUP_ENTRY') {
+
+                resposta.writeHead(409, jsonHeader);
+                resposta.end(JSON.stringify({
+                    mensagem: 'CPF já cadastrado'
+                }));
+
+                return true;
+            }
+
+            throw erro;
+        }
 
         return true;
     }
 
-    // DELETE - Excluir paciente
+    // DELETE - Bloqueado até criar as permissões
     if (metodo === 'DELETE' && /^\/pacientes\/\d+$/.test(rota)) {
 
-        const id = Number(rota.split('/')[2]);
-
-        const [resultado] = await db.query(
-            'DELETE FROM pacientes WHERE id = ?',
-            [id]
-        );
-
-        if (resultado.affectedRows === 0) {
-            resposta.writeHead(404, jsonHeader);
-            resposta.end(JSON.stringify({
-                mensagem: 'Paciente não encontrado'
-            }));
-
-            return true;
-        }
-
-        resposta.writeHead(200, jsonHeader);
+        resposta.writeHead(403, jsonHeader);
         resposta.end(JSON.stringify({
-            mensagem: 'Paciente excluído com sucesso'
+            mensagem: 'Exclusão não autorizada'
         }));
 
         return true;
     }
 
-    // Informa que nenhuma rota foi encontrada
     return false;
 }
 
-// Função para receber os dados enviados pelo frontend
+// Receber dados do frontend
 async function receberDados(requisicao) {
 
     let corpo = '';
@@ -173,19 +212,103 @@ async function receberDados(requisicao) {
     }
 }
 
-// Função para validar os dados do paciente
+// Validar os dados
 function validarPaciente(dados) {
 
-    return dados &&
-        typeof dados.nome === 'string' &&
-        dados.nome.trim() !== '' &&
-        typeof dados.telefone === 'string' &&
-        dados.telefone.trim() !== '' &&
-        (
-            dados.servico == null ||
-            typeof dados.servico === 'string'
-        );
+    if (!dados ||
+        typeof dados.nome !== 'string' ||
+        dados.nome.trim() === '' ||
+        dados.nome.trim().length > 150 ||
+        typeof dados.telefone !== 'string' ||
+        dados.telefone.trim() === '' ||
+        dados.telefone.trim().length > 20) {
+
+        return false;
+    }
+
+    const campos = {
+        servico: 100,
+        cpf: 14,
+        convenio: 100,
+        email: 150,
+        endereco: 255,
+        data_nascimento: 10,
+        sexo: 20,
+        cep: 9,
+        rua: 150,
+        numero: 20,
+        complemento: 100,
+        bairro: 100,
+        cidade: 100,
+        estado: 2,
+        nome_emergencia: 150,
+        parentesco: 50,
+        telefone_emergencia: 20
+    };
+
+    for (const campo in campos) {
+
+        if (dados[campo] != null &&
+            (typeof dados[campo] !== 'string' ||
+            dados[campo].trim().length > campos[campo])) {
+
+            return false;
+        }
+    }
+
+    if (dados.status &&
+        !['Ativo', 'Inativo'].includes(dados.status)) {
+
+        return false;
+    }
+
+    if (dados.cpf &&
+        !/^\d{11}$|^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(dados.cpf.trim())) {
+
+        return false;
+    }
+
+    if (dados.data_nascimento) {
+
+        const data = dados.data_nascimento;
+        const dataValida = new Date(data + 'T00:00:00Z');
+
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(data) ||
+            isNaN(dataValida.getTime()) ||
+            dataValida.toISOString().slice(0, 10) !== data) {
+
+            return false;
+        }
+    }
+
+    return true;
 }
 
-// Exporta as rotas para o servidor principal
+// Organizar os dados
+function prepararPaciente(dados) {
+
+    return {
+        nome: dados.nome.trim(),
+        telefone: dados.telefone.trim(),
+        servico: dados.servico?.trim() || null,
+        cpf: dados.cpf?.replace(/\D/g, '') || null,
+        convenio: dados.convenio?.trim() || null,
+        status: dados.status || 'Ativo',
+        data_nascimento: dados.data_nascimento || null,
+        email: dados.email?.trim() || null,
+        endereco: dados.endereco?.trim() || null,
+        sexo: dados.sexo?.trim() || null,
+        cep: dados.cep?.trim() || null,
+        rua: dados.rua?.trim() || null,
+        numero: dados.numero?.trim() || null,
+        complemento: dados.complemento?.trim() || null,
+        bairro: dados.bairro?.trim() || null,
+        cidade: dados.cidade?.trim() || null,
+        estado: dados.estado?.trim().toUpperCase() || null,
+        nome_emergencia: dados.nome_emergencia?.trim() || null,
+        parentesco: dados.parentesco?.trim() || null,
+        telefone_emergencia: dados.telefone_emergencia?.trim() || null
+    };
+}
+
 module.exports = rotasPacientes;
