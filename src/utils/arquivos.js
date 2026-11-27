@@ -1,12 +1,12 @@
 const fs = require('node:fs/promises');
 const path = require('node:path');
 
-// Localização das pastas do projeto
+// Pastas do projeto
 const raiz = path.resolve(__dirname, '../..');
 const pastaPublic = path.join(raiz, 'public');
 const pastaViews = path.join(raiz, 'src', 'views');
 
-// Tipos de arquivos aceitos pelo navegador
+// Tipos de arquivos
 const tiposArquivo = {
     '.html': 'text/html; charset=utf-8',
     '.css': 'text/css; charset=utf-8',
@@ -19,9 +19,10 @@ const tiposArquivo = {
     '.ico': 'image/x-icon'
 };
 
-// Telas disponíveis no sistema
+// Telas do sistema
 const telas = {
-    '/': 'login.html',
+    '/': 'home.html',
+    '/home.html': 'home.html',
     '/login.html': 'login.html',
     '/dashboard.html': 'dashboard.html',
     '/pacientes.html': 'pacientes.html',
@@ -32,7 +33,7 @@ const telas = {
     '/configuracoes.html': 'configuracoes.html'
 };
 
-// Função para entregar arquivos ao navegador
+// Carrega os arquivos
 async function servirArquivos(requisicao, resposta) {
 
     if (requisicao.method !== 'GET') {
@@ -43,7 +44,7 @@ async function servirArquivos(requisicao, resposta) {
 
     let arquivo;
 
-    // Verifica se a rota corresponde a uma tela
+    // Carrega as telas
     if (Object.hasOwn(telas, rota)) {
 
         arquivo = path.join(pastaViews, telas[rota]);
@@ -51,12 +52,13 @@ async function servirArquivos(requisicao, resposta) {
     } else if (
         rota.startsWith('/css/') ||
         rota.startsWith('/js/') ||
-        rota.startsWith('/assets/')
+        rota.startsWith('/assets/') ||
+        rota.startsWith('/img/')
     ) {
 
         arquivo = path.resolve(pastaPublic, '.' + rota);
 
-        // Impede acesso fora da pasta public
+        // Protege as pastas do projeto
         if (!arquivo.startsWith(pastaPublic + path.sep)) {
             return false;
         }
@@ -70,7 +72,7 @@ async function servirArquivos(requisicao, resposta) {
         const conteudo = await fs.readFile(arquivo);
         const extensao = path.extname(arquivo).toLowerCase();
 
-        // Reprodução de vídeos MP4
+        // Reprodução dos vídeos
         if (extensao === '.mp4' && requisicao.headers.range) {
 
             const tamanho = conteudo.length;
@@ -125,7 +127,7 @@ async function servirArquivos(requisicao, resposta) {
             return true;
         }
 
-        // Carregamento dos demais arquivos
+        // Carrega os outros arquivos
         const cabecalhos = {
             'Content-Type': tiposArquivo[extensao] ||
                 'application/octet-stream',
@@ -137,7 +139,6 @@ async function servirArquivos(requisicao, resposta) {
         }
 
         resposta.writeHead(200, cabecalhos);
-
         resposta.end(conteudo);
 
         return true;
